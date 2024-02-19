@@ -3,12 +3,19 @@ const bodyParser = require("body-parser");
 
 const { PORT } = require("./config/server-config");
 
+const apiRoutes = require("./routes/index");
+
 const app = express();
 
-app.use(bodyParser.json());
+const prepareAndStartServer = () => {
+  app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(PORT, () => {
-  console.log(`Server running at : ${PORT}`);
-});
+  app.use("/api", apiRoutes);
+
+  app.listen(PORT, () => {
+    console.log(`Server running at : ${PORT}`);
+  });
+};
+prepareAndStartServer();
