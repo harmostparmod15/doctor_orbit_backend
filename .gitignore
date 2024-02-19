@@ -1,2 +1,4 @@
 SearchService/node_modules
 SearchService/.env
+SearchService/src/config/config.json
+SearchService/.DS_Store
