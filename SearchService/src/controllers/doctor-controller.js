@@ -21,6 +21,26 @@ const getAllDoctors = async (req, res) => {
   }
 };
 
+const getDoctor = async (req, res) => {
+  try {
+    const response = await doctorService.getDoctor(req.params.id);
+    return res.status(200).json({
+      data: response,
+      success: true,
+      message: "successfully fetched doctor",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "unable to get doctor",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   getAllDoctors,
+  getDoctor,
 };
