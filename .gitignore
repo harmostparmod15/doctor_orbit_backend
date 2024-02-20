@@ -5,4 +5,5 @@ SearchService/.DS_Store
 
 AuthService/node_modules
 AuthService/.env
+AuthService/src/config/config.json
 AuthService/src/.DS_Store
