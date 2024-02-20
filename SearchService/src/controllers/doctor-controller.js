@@ -40,7 +40,47 @@ const getDoctor = async (req, res) => {
   }
 };
 
+const deleteDoctor = async (req, res) => {
+  try {
+    const response = await doctorService.deleteDoctor(req.params.id);
+    return res.status(201).json({
+      data: response,
+      success: true,
+      message: "successfully deleted a doctor",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(501).json({
+      data: {},
+      success: false,
+      message: "unable to delete a doctors",
+      error: error,
+    });
+  }
+};
+
+const createDoctor = async (req, res) => {
+  try {
+    const response = await doctorService.createDoctor(req.body);
+    return res.status(201).json({
+      data: response,
+      success: true,
+      message: " successfully create a doctor",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(501).json({
+      data: {},
+      success: false,
+      message: " unable  to create  a doctor",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   getAllDoctors,
   getDoctor,
+  deleteDoctor,
+  createDoctor,
 };

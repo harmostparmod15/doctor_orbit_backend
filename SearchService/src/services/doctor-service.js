@@ -24,6 +24,26 @@ class DoctorService {
       throw error;
     }
   }
+
+  async deleteDoctor(id) {
+    try {
+      const response = await this.doctorRepository.deleteDoctor(id);
+      return response;
+    } catch (error) {
+      console.log("something went worng in service layer");
+      throw error;
+    }
+  }
+
+  async createDoctor(data) {
+    try {
+      const response = await this.doctorRepository.createDoctor(data);
+      return response;
+    } catch (error) {
+      console.log("something went wrong in service layer");
+      throw error;
+    }
+  }
 }
 
 module.exports = DoctorService;
