@@ -10,3 +10,4 @@ AuthService/src/.DS_Store
 
 BookingService/node_modules
 BookingService/.env
+BookingService/src/config/config.json
