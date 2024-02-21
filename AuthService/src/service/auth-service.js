@@ -69,6 +69,64 @@ class AuthService {
       throw new Error(error);
     }
   }
+
+  async getAllUsers(user) {
+    try {
+      //  geting user info from db
+      const storedUser = await this.authRepository.getUser(user);
+      console.log("st user ", storedUser);
+      //  if user is admin then call delete users
+      if (storedUser?.dataValues?.role === "admin") {
+        const response = this.authRepository.getAllUsers();
+        return response;
+      } else {
+        throw new Error("you dont have rights to do this");
+      }
+    } catch (error) {
+      console.log("something went wrong in serivce layer");
+      console.log("serivce error", error);
+      throw new Error(error);
+      s;
+    }
+  }
+
+  async deleteUser(data) {
+    try {
+      //  geting user info from db
+      const storedUser = await this.authRepository.getUser(data?.user);
+      //  if user is admin then call delete users
+      if (storedUser?.dataValues?.role === "admin") {
+        const response = this.authRepository.deleteUser(data.query);
+        return response;
+      } else {
+        throw new Error("you dont have rights to do this");
+      }
+    } catch (error) {
+      console.log("something went wrong in serivce layer");
+      console.log("serivce error", error);
+      throw new Error(error);
+      s;
+    }
+  }
+
+  async deleteAllUsers(user) {
+    try {
+      //  geting user info from db
+      const storedUser = await this.authRepository.getUser(user);
+      //  if user is admin then call delete users
+      if (storedUser?.dataValues?.role === "admin") {
+        const response = this.authRepository.deleteAllUsers();
+        return response;
+      } else {
+        throw new Error("you dont have rights to do this");
+      }
+    } catch (error) {
+      console.log("something went wrong in serivce layer");
+      console.log("serivce error", error);
+      throw new Error(error);
+      s;
+    }
+  }
 }
 
 module.exports = AuthService;
