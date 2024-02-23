@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   bookings.init(
     {
+      patientEmail: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       patientName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      patientMobile: DataTypes.INTEGER,
+      patientMobile: DataTypes.STRING,
       doctorId: {
         type: DataTypes.INTEGER,
         allowNull: false,

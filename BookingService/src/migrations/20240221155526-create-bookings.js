@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      patientEmail: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       patientName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -18,12 +22,13 @@ module.exports = {
         allowNull: false,
       },
       patientMobile: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       doctorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+
       appointmentDate: {
         type: Sequelize.DATE,
         allowNull: false,
