@@ -10,7 +10,7 @@ router.get("/doctors", DoctorController.getAllDoctors);
 router.get("/doctor/:id", DoctorController.getDoctor);
 router.delete("/doctor/:id", DoctorController.deleteDoctor);
 router.post(
-  "/doctor",
+  "/doctor/new",
   validRequestValidator.validRequest,
   DoctorController.createDoctor
 );
