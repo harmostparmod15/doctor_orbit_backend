@@ -13,4 +13,7 @@ router.post(
   BookingController.createBooking
 );
 
+router.get("/bookings", authJWT, BookingController.getBooking);
+router.delete("/booking/:id", authJWT, BookingController.deleteBooking);
+
 module.exports = router;

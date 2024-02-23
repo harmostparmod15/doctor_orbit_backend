@@ -31,6 +31,20 @@ class BookingRepository {
       throw error;
     }
   }
+
+  async deleteBooking(id) {
+    try {
+      const response = await bookings.destroy({
+        where: {
+          id: id,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log("something went wrong in repositroy layer");
+      throw error;
+    }
+  }
 }
 
 module.exports = BookingRepository;
