@@ -12,7 +12,7 @@ class BookingService {
         data.user.email
       );
       //  if booking with same useremail exist throw an error
-      if (isBookingExist[0]?.dataValues?.patientEmail === data?.user?.email) {
+      if (isBookingExist?.dataValues?.patientEmail === data?.user?.email) {
         throw new Error("Only 1 appointment allowed per user,  ");
       }
       //else  create a new bookings

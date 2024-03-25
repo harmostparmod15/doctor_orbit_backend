@@ -18,6 +18,31 @@ const isValidSignUpRequest = (req, res, next) => {
   } else next();
 };
 
+const checkValidSignUpData = (req, res, next) => {
+  let wrongInput = null;
+  const isNameValid = /^[a-z ,.'-]+$/i.test(req?.body?.name);
+  const isEmailValid = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(
+    req?.body?.email
+  );
+  const isMobileNumVaild = /^([+]\d{2})?\d{10}$/.test(req?.body?.mobile_no);
+
+  // checking which field is invalid
+  if (!isNameValid) wrongInput = "Full name";
+  else if (!isEmailValid) wrongInput = "Email";
+  else if (!isMobileNumVaild) wrongInput = "Mobile no.";
+
+  // if wrong input return error
+  if (!isEmailValid || !isNameValid || !isMobileNumVaild) {
+    console.log("sometihing is invalid");
+    return res.status(403).json({
+      data: {},
+      success: false,
+      message: "unable to complete your request",
+      error: `Wrong input , please enter *${wrongInput}* in  correct format`,
+    });
+  } else next();
+};
+
 const isValidSignInRequest = (req, res, next) => {
   if (!req.headers.email || !req.headers.password) {
     return res.status(403).json({
@@ -73,6 +98,7 @@ const authJWT = (req, res, next) => {
 module.exports = {
   isValidSignUpRequest,
   isValidSignInRequest,
+  checkValidSignUpData,
   isValidAdminSecretPhrase,
   authJWT,
 };

@@ -7,12 +7,18 @@ const {
   isValidSignInRequest,
   isValidAdminSecretPhrase,
   authJWT,
+  checkValidSignUpData,
 } = require("../../middlewares/index");
 
 const router = express.Router();
 
 // USER  ROUTES
-router.post("/user/signup", isValidSignUpRequest, authController.signUpUser);
+router.post(
+  "/user/signup",
+  isValidSignUpRequest,
+  checkValidSignUpData,
+  authController.signUpUser
+);
 router.post("/user/signin", isValidSignInRequest, authController.signInUser);
 
 // ADMIN ROUTES
