@@ -33,7 +33,6 @@ const checkValidSignUpData = (req, res, next) => {
 
   // if wrong input return error
   if (!isEmailValid || !isNameValid || !isMobileNumVaild) {
-    console.log("sometihing is invalid");
     return res.status(403).json({
       data: {},
       success: false,

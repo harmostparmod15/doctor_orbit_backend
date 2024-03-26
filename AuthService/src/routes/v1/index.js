@@ -28,7 +28,7 @@ router.post(
   isValidSignUpRequest,
   authController.signUpUser
 );
-router.post("/admin/signin", isValidSignInRequest, authController.signInUser);
+router.post("/admin/signin", isValidSignInRequest, authController.signInAdmin);
 router.get("/admin/users", authJWT, authController.getAllUsers);
 router.delete("/admin/user/", authJWT, authController.deleteUser);
 router.delete("/admin/users", authJWT, authController.deleteAllUsers);

@@ -40,6 +40,25 @@ const signInUser = async (req, res) => {
   }
 };
 
+const signInAdmin = async (req, res) => {
+  try {
+    const response = await authService.signInAdmin(req.headers);
+    return res.status(200).json({
+      response: response,
+      success: true,
+      message: "successfully signed you in",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "unable to signed you in ",
+      error: error.message,
+    });
+  }
+};
+
 const getAllUsers = async (req, res) => {
   try {
     const response = await authService.getAllUsers(req.user);
@@ -100,6 +119,7 @@ const deleteAllUsers = async (req, res) => {
 module.exports = {
   signUpUser,
   signInUser,
+  signInAdmin,
   getAllUsers,
   deleteUser,
   deleteAllUsers,
