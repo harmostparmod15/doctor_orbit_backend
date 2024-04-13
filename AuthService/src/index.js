@@ -9,7 +9,18 @@ const apiRoutes = require("./routes/index");
 const app = express();
 
 const setupAndStartServer = () => {
-  app.use(cors());
+  app.use((req, res, next) => {
+    res.setHeader(
+      "Content-Security-Policy",
+      "default-src 'self'" + "script-src 'self'"
+    );
+
+    res.setHeader("X-XSS-Protection", "0");
+    res.removeHeader("X-Powered-By");
+    next();
+  });
+
+  app.use(cors({ origin: "http://localhost:1234" }));
 
   app.use(bodyParser.json());
 

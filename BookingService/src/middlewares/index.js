@@ -1,11 +1,23 @@
 const jwt = require("jsonwebtoken");
 
 const { SECRET_KEY } = require("../config/server-config");
+const { checkValidBookingDate } = require("../utils/helpers");
 
 const validBookingRequest = (req, res, next) => {
   const isNameValid = /^[a-z ,.'-]+$/i.test(req?.body?.patientName);
   const isMobileValid = /^([+]\d{2})?\d{10}$/.test(req?.body?.patientMobile);
-  const isAgeValid = req?.body?.patientAge > 120 && age > 0;
+  const isAgeValid = req?.body?.patientAge < 120 && req?.body?.patientAge > 0;
+
+  const isValidBookingDate = checkValidBookingDate(req?.body?.appointmentDate);
+  if (!isValidBookingDate) {
+    return res.status(404).json({
+      data: {},
+      success: false,
+      message: "Invalid data",
+      error: "Appointment date cannot be in past",
+    });
+  }
+
   if (
     !req.body.patientName ||
     !req.body.patientAge ||

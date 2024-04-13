@@ -24,7 +24,9 @@ const checkValidSignUpData = (req, res, next) => {
   const isEmailValid = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(
     req?.body?.email
   );
-  const isMobileNumVaild = /^([+]\d{2})?\d{10}$/.test(req?.body?.mobile_no);
+  const isMobileNumVaild = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/.test(
+    req?.body?.mobile_no
+  );
 
   // checking which field is invalid
   if (!isNameValid) wrongInput = "Full name";
